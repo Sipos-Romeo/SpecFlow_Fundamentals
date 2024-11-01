@@ -22,4 +22,7 @@ public static class BaseConfig
     public static string Password => Config["Password"];
     public static string IncorrectUser => Config["IncorrectUser"];
     public static string IncorrectPassword => Config["IncorrectPassword"];
+    public static string ErrorUser => Config["IncorrectPassword"];
+    public static string VisualUser => Config["IncorrectPassword"];
+
 }

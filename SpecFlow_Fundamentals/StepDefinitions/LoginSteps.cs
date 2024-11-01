@@ -18,7 +18,9 @@ namespace SpecFlow_Fundamentals.StepDefinitions
             { "locked out", new Credentials(BaseConfig.LockedOutUser, BaseConfig.Password) },
             { "problem", new Credentials(BaseConfig.ProblemUser, BaseConfig.Password) },
             { "performance glitch", new Credentials(BaseConfig.PerformanceGlitchUser, BaseConfig.Password) },
-            { "incorrect", new Credentials(BaseConfig.IncorrectUser, BaseConfig.IncorrectPassword) },
+            { "incorrect", new Credentials(BaseConfig.IncorrectUser, BaseConfig.Password) },
+            { "error user", new Credentials(BaseConfig.ErrorUser, BaseConfig.Password) },
+            { "visual user", new Credentials(BaseConfig.VisualUser, BaseConfig.Password) }
         };
 
         public LoginSteps(IWebDriver webDriver)
@@ -64,6 +66,8 @@ namespace SpecFlow_Fundamentals.StepDefinitions
         {
            Assert.AreEqual(expectedMessage, LoginPage.GetLogInErrorMessage());
         }
+
+
 
     }
 }
