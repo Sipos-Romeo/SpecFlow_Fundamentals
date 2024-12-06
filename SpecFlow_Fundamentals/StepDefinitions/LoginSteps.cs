@@ -28,13 +28,13 @@ namespace SpecFlow_Fundamentals.StepDefinitions
             _webDriver = webDriver;
         }
 
-        [Given(@"I am on the login page")]
+        [StepDefinition(@"I am on the login page")]
         public void IAmOnTheLoginPage()
         {
             LoginPage.Load();
         }
 
-        [When(@"I enter the (default|locked out|problem|performance glitch|incorrect) username and (password|incorrect password)")]
+        [StepDefinition(@"I enter the (default|locked out|problem|performance glitch|incorrect|error user|visual user) username and (password|incorrect password)")]
         public void IEnterTheUsernameAndPassword(string username, string password)
         {
             LoginPage
@@ -42,29 +42,29 @@ namespace SpecFlow_Fundamentals.StepDefinitions
                 .FillPassword(SpecificCredentials[username].Password);
         }
 
-        [When(@"I click the login button")]
+        [StepDefinition(@"I click the login button")]
         public void IClockOnLoginButton()
         {
             LoginPage.ClickLogin();
         }
 
-        [Then(@"I should be redirected to the inventory page")]
+        [StepDefinition(@"I should be redirected to the inventory page")]
         public void IShouldBeRedirectedToTheInventoryPage()
         {
             //TODO: add InventoryPage.IsLoaded() check
-            Assert.True(LoginPage.GetWebDriver().Url.EndsWith("/inventory.html"), "Browser is not on inventory page");
+            Assert.That(LoginPage.GetWebDriver().Url.EndsWith("/inventory.html"), "Browser is not on inventory page");
         }
 
-        [Then(@"I should see the error message")]
+        [StepDefinition(@"I should see the error message")]
         public void IShouldSeeAErrorMessage()
         {
-            Assert.True(LoginPage.IsLoginErrorMessageDisplayed());
+            Assert.That(LoginPage.IsLoginErrorMessageDisplayed());
         }
        
-        [Then(@"the error message shoud contain the text ""([^""]*)""")]
+        [StepDefinition(@"the error message shoud contain the text ""([^""]*)""")]
         public void ThenTheErrorMessageShoudContainTheText(string expectedMessage)
         {
-           Assert.AreEqual(expectedMessage, LoginPage.GetLogInErrorMessage());
+           Assert.That(expectedMessage, Is.EqualTo(LoginPage.GetLogInErrorMessage()), "Error massage is not as expected");       
         }
 
 
